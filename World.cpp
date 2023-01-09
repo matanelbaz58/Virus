@@ -28,7 +28,7 @@ void World::add_virus(string name, int length_v, int *target, const int *vector,
             v = new Lentivirus(name, length_v,target, vector,type);
             break;
 
-        
+
     }
 
     queue->add(*v);
@@ -84,11 +84,11 @@ void World::operator++(int) {
     Virus *p = nullptr;
     int count = 0;
     while (count< amount_virus){
-         p = queue->pop();
-         if(p->getType() != 'P')
-             break;
-         count++;
-         queue->add(*p);
+        p = queue->pop();
+        if(p->getType() != 'P')
+            break;
+        count++;
+        queue->add(*p);
     }
     if(p!= nullptr & count != amount_virus) {
         *p = *best;
@@ -105,7 +105,7 @@ void World::print_world() {
 
     cout<<"\n";
     if(the_best_virus != nullptr)
-      cout<<*the_best_virus;
+        cout<<*the_best_virus;
 
 }
 
@@ -137,9 +137,9 @@ World &World::operator=(const World &w) {
     is_error_zero = w.is_error_zero;
     the_best_virus = new Virus(*w.the_best_virus);
     queue->copy_queue(*w.queue);
-   // for(int i = 0; i < amount_virus;i++){
-   //     pool_virus2[i] = new Virus(*w.pool_virus2[i]);
-   // }
+    // for(int i = 0; i < amount_virus;i++){
+    //     pool_virus2[i] = new Virus(*w.pool_virus2[i]);
+    // }
     return *this;
 }
 

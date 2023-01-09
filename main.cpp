@@ -99,7 +99,7 @@ int main(int argc, char *argv[]) {
     cin >> h;
     //world->sort_virus();
     while (!(time >= (h) || world->isErrorZero())) {
-
+        //world->print_world();
         (*world)++;
         world->updating_all_single();
 
