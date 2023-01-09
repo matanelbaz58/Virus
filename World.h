@@ -12,13 +12,12 @@ class World {
 private:
     Queue<Virus>* queue;
     int amount_virus;
-    Virus **pool_virus2;
+
     Virus* the_best_virus;
     bool is_error_zero;
 public:
     explicit World(int amount_virus);
-    void add_virus(string name,int length_v,int pm,int* target,const int *vector, int index);    //  add virus to pool
-    void sort_virus();
+    void add_virus(string name, int length_v, int *target, const int *vector, int index,char type);    //  add virus to pool
     ~World();
 
     World(const World &w);

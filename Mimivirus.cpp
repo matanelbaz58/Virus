@@ -4,5 +4,5 @@
 
 #include "Mimivirus.h"
 
-Mimivirus::Mimivirus(const string &name, int lengthV, int pm, int *target, const int *vector,string type) : Virus(name, lengthV, 4,
+Mimivirus::Mimivirus(const string &name, int lengthV, int *target, const int *vector,char type) : Virus(name, lengthV, 4,
                                                                                                       target, vector,type) {}

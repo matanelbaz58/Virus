@@ -8,7 +8,7 @@
 #include "Virus.h"
 class Lentivirus : public Virus{
 public:
-    Lentivirus(const string &name, int lengthV, int pm, int *target, const int *vector,string type);
+    Lentivirus(const string &name, int lengthV, int *target, const int *vector,char type);
 };
 
 

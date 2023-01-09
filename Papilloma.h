@@ -8,7 +8,7 @@
 #include "Virus.h"
 class Papilloma: public Virus{
 public:
-    Papilloma(const string &name, int lengthV, int pm, int *target, const int *vector,string type);
+    Papilloma(const string &name, int lengthV, int *target, const int *vector,char type);
 };
 
 

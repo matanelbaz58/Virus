@@ -15,7 +15,6 @@ int main(int argc, char *argv[]) {
     std::string file_2 = argv[2];
     World *world;
     int length_v;
-    int pm;
     int *target;
     string line;
     ifstream file1(file_1);
@@ -25,8 +24,8 @@ int main(int argc, char *argv[]) {
     } else {
         getline(file1, line);
         length_v = stoi(line);
-        getline(file1, line);
-        pm = stoi(line);
+        //getline(file1, line);
+        //pm = stoi(line);
         string num;
         target = new int[length_v];
         getline(file1, line);
@@ -56,6 +55,7 @@ int main(int argc, char *argv[]) {
         getline(file2, line);
         amount_virus = stoi(line);
         string name;
+        char type;
         string num;
         int count = 0;
         world = new World(amount_virus);
@@ -67,6 +67,7 @@ int main(int argc, char *argv[]) {
             }
 
             stringstream ss(line);
+            ss >> type;
             ss >> name;
 
             int *v = new int[length_v];
@@ -84,7 +85,7 @@ int main(int argc, char *argv[]) {
                 exit(1);
             }
 
-            world->add_virus(name, length_v, pm, target, v, count);
+            world->add_virus(name, length_v, target, v, count,type);
             count++;
 
         }

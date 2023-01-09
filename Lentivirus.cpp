@@ -4,6 +4,6 @@
 
 #include "Lentivirus.h"
 
-Lentivirus::Lentivirus(const string &name, int lengthV, int pm, int *target, const int *vector,string type) : Virus(name, 2,
-                                                                                                        pm, target,
+Lentivirus::Lentivirus(const string &name, int lengthV, int *target, const int *vector,char type) : Virus(name, lengthV,
+                                                                                                        2, target,
                                                                                                         vector,type) {}

@@ -247,7 +247,7 @@ public:
         Node<T> *p = first;
 
         while(p){
-            cout<< " " <<*p->getData()<<"\n";
+            cout<<" " <<*p->getData()<<"\n";
             p = p->getNext();
         }
     }

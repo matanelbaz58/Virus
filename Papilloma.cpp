@@ -4,5 +4,5 @@
 
 #include "Papilloma.h"
 
-Papilloma::Papilloma(const string &name, int lengthV, int pm, int *target, const int *vector,string type) : Virus(name, lengthV, 1,
+Papilloma::Papilloma(const string &name, int lengthV, int *target, const int *vector,char type) : Virus(name, lengthV, 1,
                                                                                                       target, vector,type) {}

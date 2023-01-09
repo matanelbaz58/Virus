@@ -12,7 +12,7 @@ using namespace std;
 
 class Virus {
 private:
-    string type;
+    char type;
     int *vector;
     string name;
     int length_v;
@@ -29,7 +29,7 @@ private:
 
 public:
     Virus() = delete;
-    Virus( string name,int length_v,int pm,int* target,const int *vector,string type);
+    Virus( string name,int length_v,int pm,int* target,const int *vector,char type);
 
     double get_num_error();
 
@@ -52,6 +52,8 @@ public:
     bool operator<=(const Virus &rhs) const;
 
     bool operator>=(const Virus &rhs) const;
+
+    char getType() const;
 
 
 };

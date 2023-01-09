@@ -7,7 +7,7 @@
 #include <utility>
 
 
-Virus::Virus(string name, int length_v, int pm, int *target, const int *vector,string type) :
+Virus::Virus(string name, int length_v, int pm, int *target, const int *vector,char type) :
         name(std::move(name)), length_v(length_v), pm(pm), target(target),
         my_version(0),type(type) {
 
@@ -45,6 +45,7 @@ void Virus::operator*() {
 }
 
 Virus::Virus(const Virus &v) {
+    type = v.type;
     name = v.name;
     length_v = v.length_v;
     error = v.error;
@@ -74,6 +75,7 @@ Virus::~Virus() {
 Virus &Virus::operator=(const Virus &v) {
     if (this == &v)
         return *this;
+    type = v.type;
     name = v.name;
     length_v = v.length_v;
     error = v.error;
@@ -91,6 +93,7 @@ Virus &Virus::operator=(const Virus &v) {
 }
 
 Virus::Virus(Virus &&v) noexcept {
+    type = v.type;
     name = move(v.name);
     length_v = v.length_v;
     error = v.error;
@@ -107,6 +110,7 @@ Virus::Virus(Virus &&v) noexcept {
 Virus &Virus::operator=(Virus &&v) noexcept {
     if (this == &v)
         return *this;
+    type = v.type;
     name = v.name;
     length_v = v.length_v;
     error = v.error;
@@ -122,12 +126,17 @@ Virus &Virus::operator=(Virus &&v) noexcept {
 
 }
 
+char Virus::getType() const {
+    return type;
+}
+
 ostream &operator<<(ostream &os, const Virus &virus) {
     if (virus.my_version == 0)
-        os << virus.name << "\t";
+        os << virus.error << " "<< virus.type << " "<< virus.name << "\t";
     else
-        os << virus.name << "_" << virus.my_version << "\t";
+        os << virus.error << " "<<virus.type << " "<< virus.name << "_" << virus.my_version << "\t";
     for (int i = 0; i < virus.length_v; i++) {
+
         os << virus.vector[i] << " ";
     }
     return os;

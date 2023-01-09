@@ -5,7 +5,9 @@
 #include "World.h"
 
 #include <utility>
-
+#include "Papilloma.h"
+#include "Lentivirus.h"
+#include "Mimivirus.h"
 
 World::World(int amount_virus) : amount_virus(amount_virus), the_best_virus(nullptr) ,is_error_zero(false) {
     queue = new Queue<Virus>();
@@ -13,30 +15,43 @@ World::World(int amount_virus) : amount_virus(amount_virus), the_best_virus(null
 
 }
 
-void World::add_virus(string name, int length_v, int pm, int *target, const int *vector, int index) {
+void World::add_virus(string name, int length_v, int *target, const int *vector, int index,char type) {
+    Virus *v;
+    switch (type) {
+        case 'P':
+            v = new Papilloma(name, length_v,target, vector,type);
+            break;
+        case 'M':
+            v = new Mimivirus(name, length_v,target, vector,type);
+            break;
+        case 'L':
+            v = new Lentivirus(name, length_v,target, vector,type);
+            break;
 
-    Virus *v = new Virus(std::move(name), length_v,pm,  target, vector);
+        
+    }
+
     queue->add(*v);
     //pool_virus2[index] = v;
 }
 
-void World::sort_virus() {
-    Virus *temp;
-    for(int i = 0; i < amount_virus;i++){
-        for(int j = i+1;j<amount_virus;j++){
-            if(pool_virus2[i]->getError() > pool_virus2[j]->getError()){
-                temp = pool_virus2[i];
-                pool_virus2[i] = pool_virus2[j];
-                pool_virus2[j] = temp;
+//void World::sort_virus() {
+//    Virus *temp;
+//    for(int i = 0; i < amount_virus;i++){
+//        for(int j = i+1;j<amount_virus;j++){
+//            if(pool_virus2[i]->getError() > pool_virus2[j]->getError()){
+//                temp = pool_virus2[i];
+//                pool_virus2[i] = pool_virus2[j];
+//                pool_virus2[j] = temp;
+//
+//            }
+//        }
+//
+//
+//
+//    }
 
-            }
-        }
-
-
-
-    }
-
-}
+//}
 
 bool World::isErrorZero() const {
     return is_error_zero;
@@ -64,9 +79,21 @@ void World::updating_all_single() {
 }
 
 void World::operator++(int) {
-    Virus *p = queue->pop();
-    *p= *queue->peek_first();
-    queue->add(*p);
+    queue->sort();
+    Virus *best= queue->peek_first();
+    Virus *p = nullptr;
+    int count = 0;
+    while (count< amount_virus){
+         p = queue->pop();
+         if(p->getType() != 'P')
+             break;
+         count++;
+         queue->add(*p);
+    }
+    if(p!= nullptr & count != amount_virus) {
+        *p = *best;
+        queue->add(*p);
+    }
 
 }
 
@@ -75,9 +102,7 @@ void World::operator++(int) {
 void World::print_world() {
     queue->sort();
     queue->print_queue();
-    //for(int i = 0 ; i< amount_virus;i++){
-    //    cout<<*pool_virus2[i]<<"\n";
-    //}
+
     cout<<"\n";
     if(the_best_virus != nullptr)
       cout<<*the_best_virus;
@@ -87,10 +112,8 @@ void World::print_world() {
 World::~World() {
     delete the_best_virus;
     delete queue;
-    //for(int i = 0 ; i<amount_virus;i++){
-    //    delete pool_virus2[i];
-    //}
-    delete pool_virus2;
+
+    //delete pool_virus2;
 }
 
 

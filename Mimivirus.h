@@ -8,7 +8,7 @@
 #include "Virus.h"
 class Mimivirus: public Virus{
 public:
-    Mimivirus(const string &name, int lengthV, int pm, int *target, const int *vector,string type);
+    Mimivirus(const string &name, int lengthV, int *target, const int *vector,char type);
 };
 
 
